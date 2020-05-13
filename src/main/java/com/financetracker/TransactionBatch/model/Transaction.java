@@ -1,7 +1,7 @@
 package com.financetracker.TransactionBatch.model;
 
 public class Transaction {
-    private long transaction_id;
+    //private long transaction_id;
     private int step;
     private String type;
     private float amount;
@@ -16,12 +16,12 @@ public class Transaction {
     //private Date createdAt;
     private String time;
 
-    public Transaction(long transaction_id, int step, String type, float amount,
+    public Transaction(int step, String type, float amount,
                        String nameOrig, float oldbalanceOrig, float newbalanceOrig,
                        String nameDest, float oldbalanceDest, float newbalanceDest,
                        int isFraud, int isFlaggedFraud) {
 
-        this.transaction_id = transaction_id;
+        //this.transaction_id = transaction_id;
         this.step = step;
         this.type = type;
         this.amount = amount;
@@ -40,6 +40,7 @@ public class Transaction {
 
     }
 
+    /*
     public long getId() {
         return transaction_id;
     }
@@ -47,6 +48,8 @@ public class Transaction {
     public void setId(long transaction_id) {
         this.transaction_id = transaction_id;
     }
+
+    */
 
     public int getStep() {
         return step;
@@ -138,9 +141,9 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("Transaction[transaction_id=%d , step=%d, type='%s', amount=%f, nameOrig='%s', oldbalanceOrig=%f, " +
-                "newbalanceOrig=%f, nameDest='%s', oldbalanceDest=%f, newbalanceDest=%f, isFraud=%d, isFlaggedFraud=%d]",
-                transaction_id, step, type, amount, nameOrig, oldbalanceOrig, newbalanceOrig, nameDest, oldbalanceDest,
+        return String.format("Transaction[step='%d', type='%s', amount='%f', nameOrig='%s', oldbalanceOrig='%f', " +
+                "newbalanceOrig='%f', nameDest='%s', oldbalanceDest='%f', newbalanceDest='%f', isFraud='%d', isFlaggedFraud='%d']",
+                step, type, amount, nameOrig, oldbalanceOrig, newbalanceOrig, nameDest, oldbalanceDest,
                 newbalanceDest, isFraud, isFlaggedFraud);
     }
 }

@@ -12,11 +12,12 @@ public class Reader {
         FlatFileItemReader<Transaction> reader = new FlatFileItemReader<Transaction>();
 
         reader.setResource(new ClassPathResource(path));
+        reader.setLinesToSkip(1);
         reader.setLineMapper(new DefaultLineMapper<Transaction>() {
             {
                 setLineTokenizer(new DelimitedLineTokenizer() {
                     {
-                        setNames(new String[] { "transaction_id", "step", "type", "amount",
+                        setNames(new String[] {"step", "type", "amount",
                         "nameOrig", "oldbalanceOrig", "newbalanceOrig", "nameDest", "oldbalanceDest", "newbalanceDest",
                         "isFraud", "isFlaggedFraud"});
                     }
