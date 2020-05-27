@@ -17,9 +17,9 @@ public class Reader {
             {
                 setLineTokenizer(new DelimitedLineTokenizer() {
                     {
-                        setNames(new String[] {"step", "type", "amount",
-                        "nameOrig", "oldbalanceOrig", "newbalanceOrig", "nameDest", "oldbalanceDest", "newbalanceDest",
-                        "isFraud", "isFlaggedFraud"});
+                        setNames("step", "type", "amount",
+                                "nameOrig", "oldbalanceOrig", "newbalanceOrig", "nameDest", "oldbalanceDest", "newbalanceDest",
+                                "isFraud", "isFlaggedFraud");
                     }
                 });
                 setFieldSetMapper(new BeanWrapperFieldSetMapper<Transaction>() {

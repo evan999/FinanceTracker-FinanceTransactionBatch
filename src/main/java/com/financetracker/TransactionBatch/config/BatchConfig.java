@@ -12,13 +12,19 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.dao.MapJobExecutionDao;
+import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
+
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
 
@@ -36,8 +42,9 @@ public class BatchConfig {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1").<Transaction, Transaction>chunk(100)
+        return stepBuilderFactory.get("step1").<Transaction, Transaction>chunk(1000)
                 .reader(Reader.reader("transaction_dataset.csv"))
-                .processor(new Processor()).writer(new Writer(transactionDao)).build();
+                .processor(new Processor()).writer(new Writer(transactionDao))
+                .build();
     }
 }

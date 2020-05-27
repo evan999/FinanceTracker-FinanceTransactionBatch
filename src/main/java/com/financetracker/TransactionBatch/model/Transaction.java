@@ -4,21 +4,21 @@ public class Transaction {
     //private long transaction_id;
     private int step;
     private String type;
-    private float amount;
+    private double amount;
     private String nameOrig;
-    private float oldbalanceOrig;
-    private float newbalanceOrig;
+    private double oldbalanceOrig;
+    private double newbalanceOrig;
     private String nameDest;
-    private float oldbalanceDest;
-    private float newbalanceDest;
+    private double oldbalanceDest;
+    private double newbalanceDest;
     private int isFraud;
     private int isFlaggedFraud;
     //private Date createdAt;
-    private String time;
+    //private String time;
 
-    public Transaction(int step, String type, float amount,
-                       String nameOrig, float oldbalanceOrig, float newbalanceOrig,
-                       String nameDest, float oldbalanceDest, float newbalanceDest,
+    public Transaction(int step, String type, double amount,
+                       String nameOrig, double oldbalanceOrig, double newbalanceOrig,
+                       String nameDest, double oldbalanceDest, double newbalanceDest,
                        int isFraud, int isFlaggedFraud) {
 
         //this.transaction_id = transaction_id;
@@ -67,11 +67,11 @@ public class Transaction {
         this.type = type;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -83,19 +83,19 @@ public class Transaction {
         this.nameOrig = nameOrig;
     }
 
-    public float getOldbalanceOrig() {
+    public double getOldbalanceOrig() {
         return oldbalanceOrig;
     }
 
-    public void setOldbalanceOrig(float oldbalanceOrig) {
+    public void setOldbalanceOrig(double oldbalanceOrig) {
         this.oldbalanceOrig = oldbalanceOrig;
     }
 
-    public float getNewbalanceOrig() {
+    public double getNewbalanceOrig() {
         return newbalanceOrig;
     }
 
-    public void setNewbalanceOrig(float newbalanceOrig) {
+    public void setNewbalanceOrig(double newbalanceOrig) {
         this.newbalanceOrig = newbalanceOrig;
     }
 
@@ -107,19 +107,19 @@ public class Transaction {
         this.nameDest = this.nameDest;
     }
 
-    public void setOldbalanceDest(float oldbalanceDest) {
+    public void setOldbalanceDest(double oldbalanceDest) {
         this.oldbalanceDest = oldbalanceDest;
     }
 
-    public float getOldbalanceDest() {
+    public double getOldbalanceDest() {
         return oldbalanceDest;
     }
 
-    public void setNewbalanceDest(float newbalanceDest) {
+    public void setNewbalanceDest(double newbalanceDest) {
         this.newbalanceDest = newbalanceDest;
     }
 
-    public float getNewbalanceDest() {
+    public double getNewbalanceDest() {
         return newbalanceDest;
     }
 
@@ -141,8 +141,8 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("Transaction[step='%d', type='%s', amount='%f', nameOrig='%s', oldbalanceOrig='%f', " +
-                "newbalanceOrig='%f', nameDest='%s', oldbalanceDest='%f', newbalanceDest='%f', isFraud='%d', isFlaggedFraud='%d']",
+        return String.format("Transaction[step='%d', type='%s', amount='%.2f', nameOrig='%s', oldbalanceOrig='%.2f', " +
+                "newbalanceOrig='%.2f', nameDest='%s', oldbalanceDest='%.2f', newbalanceDest='%.2f', isFraud='%d', isFlaggedFraud='%d']",
                 step, type, amount, nameOrig, oldbalanceOrig, newbalanceOrig, nameDest, oldbalanceDest,
                 newbalanceDest, isFraud, isFlaggedFraud);
     }

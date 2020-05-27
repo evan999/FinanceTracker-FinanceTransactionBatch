@@ -22,12 +22,12 @@ public class Listener extends JobExecutionListenerSupport {
     @Override
     public void afterJob(JobExecution jobExecution) {
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("Finish Job! Check the results");
+            log.info("Job finished! Check the results");
 
             List<Transaction> transactions = transactionDao.loadAllTransactions();
 
             for (Transaction transaction : transactions) {
-                log.info("Found <" + transaction + "> in the database.");
+                log.info("Found < " + transaction + " > in the database.");
             }
         }
     }
