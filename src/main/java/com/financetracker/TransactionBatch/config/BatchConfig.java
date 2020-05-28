@@ -34,6 +34,9 @@ public class BatchConfig {
     @Autowired
     public TransactionDao transactionDao;
 
+    private static final int CHUNK_SIZE = 1000;
+    private static final int CONCURRENCY_LIMIT = 5;
+
     @Bean
     public Job job() {
         return jobBuilderFactory.get("job").incrementer(new RunIdIncrementer()).listener(new Listener(transactionDao))
@@ -41,10 +44,17 @@ public class BatchConfig {
     }
 
     @Bean
+    public TaskExecutor taskExecutor(){
+        SimpleAsyncTaskExecutor asyncTaskExecutor=new SimpleAsyncTaskExecutor("spring_batch");
+        asyncTaskExecutor.setConcurrencyLimit(CONCURRENCY_LIMIT);
+        return asyncTaskExecutor;
+    }
+
+    @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1").<Transaction, Transaction>chunk(1000)
+        return stepBuilderFactory.get("step1").<Transaction, Transaction>chunk(CHUNK_SIZE)
                 .reader(Reader.reader("transaction_dataset.csv"))
                 .processor(new Processor()).writer(new Writer(transactionDao))
-                .build();
+                .taskExecutor(taskExecutor()).build();
     }
 }
