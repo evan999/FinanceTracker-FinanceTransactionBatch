@@ -36,6 +36,7 @@ public class BatchConfig {
 
     private static final int CHUNK_SIZE = 1000;
     private static final int CONCURRENCY_LIMIT = 5;
+    private static final int THROTTLE_LIMIT = 20;
 
     @Bean
     public Job job() {
@@ -52,9 +53,13 @@ public class BatchConfig {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1").<Transaction, Transaction>chunk(CHUNK_SIZE)
+        return stepBuilderFactory.get("step1")
+                .<Transaction, Transaction>chunk(CHUNK_SIZE)
                 .reader(Reader.reader("transaction_dataset.csv"))
-                .processor(new Processor()).writer(new Writer(transactionDao))
-                .taskExecutor(taskExecutor()).build();
+                .processor(new Processor())
+                .writer(new Writer(transactionDao))
+                .taskExecutor(taskExecutor())
+                .throttleLimit(THROTTLE_LIMIT)
+                .build();
     }
 }
