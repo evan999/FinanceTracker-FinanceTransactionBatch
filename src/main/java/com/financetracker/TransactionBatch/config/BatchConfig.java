@@ -34,7 +34,7 @@ public class BatchConfig {
     @Autowired
     public TransactionDao transactionDao;
 
-    private static final int CHUNK_SIZE = 1000;
+    private static final int CHUNK_SIZE = 200000;
     private static final int CONCURRENCY_LIMIT = 5;
     private static final int THROTTLE_LIMIT = 20;
 
@@ -55,11 +55,12 @@ public class BatchConfig {
     public Step step1() {
         return stepBuilderFactory.get("step1")
                 .<Transaction, Transaction>chunk(CHUNK_SIZE)
-                .reader(Reader.reader("transaction_dataset.csv"))
+                .reader(Reader.reader("PS_20174392719_1491204439457_log.csv"))
                 .processor(new Processor())
                 .writer(new Writer(transactionDao))
                 .taskExecutor(taskExecutor())
                 .throttleLimit(THROTTLE_LIMIT)
                 .build();
+
     }
 }

@@ -40,7 +40,7 @@ public class TransactionDaoImpl extends JdbcDaoSupport implements TransactionDao
                 ps.setString(4, transaction.getNameOrig());
                 ps.setDouble(5, transaction.getOldbalanceOrig());
                 ps.setDouble(6, transaction.getNewbalanceOrig());
-                ps.setString(7, transaction.getNameDest());
+                //ps.setString(7, transaction.getNameDest());
                 ps.setDouble(8, transaction.getOldbalanceDest());
                 ps.setDouble(9, transaction.getNewbalanceDest());
                 ps.setInt(10, transaction.getIsFraud());
@@ -69,7 +69,7 @@ public class TransactionDaoImpl extends JdbcDaoSupport implements TransactionDao
             transaction.setNameOrig((String) row.get("nameOrig"));
             transaction.setOldbalanceOrig((Double) row.get("oldbalanceOrig"));
             transaction.setNewbalanceOrig((Double) row.get("newbalanceOrig"));
-            transaction.setNameDest((String) row.get("nameDest"));
+            //transaction.setNameDest((String) row.get("nameDest"));
             transaction.setOldbalanceDest((Double) row.get("oldbalanceDest"));
             transaction.setNewbalanceDest((Double) row.get("newbalanceDest"));
             transaction.setIsFraud((Integer) row.get("isFraud"));
